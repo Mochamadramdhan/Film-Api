@@ -4,8 +4,11 @@ import { useEffect, useState } from 'react';
 
 const  App = () => {
   const [popularMovie,setPopularMovie]= useState([])
-  const search =(q)=>{
-    console.log(q);
+  const search = async (q)=>{
+    if (q.length >3){
+    const query = await seacrhMovie(q)
+    setPopularMovie(query.results)
+    }
   }
   useEffect (()=>{
     getMovieList().then((result)=>{
@@ -28,7 +31,7 @@ const  App = () => {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Mochamad Ramdhan Movie</h1>
+        <h1>Ramdhan Movie</h1>
         <input placeholder='cari film kesayangan' 
         className='Movie-search' onChange={({target})=>
         search(target.value) }>
