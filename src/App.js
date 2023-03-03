@@ -1,11 +1,13 @@
 import './App.css';
 import { getMovieList, seacrhMovie } from './api';
 import { useEffect, useState } from 'react';
+import {  useNavigate } from 'react-router-dom';
 
 const App = () => {
   const [popularMovie, setPopularMovie] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [timeoutId, setTimeoutId] = useState(null);
+  const Navigate = useNavigate()
 
   const handleSearchInput = (event) => {
     const searchTerm = event.target.value;
@@ -61,7 +63,9 @@ const App = () => {
           onChange={handleSearchInput}
           value={searchTerm}
         />
-        <div className='Movie-container'>
+        <div className='Movie-container' onClick={()=>{
+          Navigate('/details')
+        }}>
           <PopularMovieList />
         </div>
       </header>
